@@ -1,0 +1,45 @@
+# Python files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.swp
+*.swo
+*.swn
+
+# Environment variables file
+.env
+
+# Django stuff:
+*.log
+db.sqlite3
+media/
+staticfiles/
+
+# Django migrations
+*/migrations/*
+!*/migrations/__init__.py
+
+# Virtual environments
+venv/
+env/
+.venv/
+.venv/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.tmproj
+.DS_Store
+
+# Compiled files
+*.mo
+*.pot
+
+# Other
+*.bak
+*.backup
+*.orig
+*.rej
