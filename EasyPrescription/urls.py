@@ -17,8 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from dashboard import views
+from EasyPrescription import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.index, name='index'),
-]
+     path("pharmacie/<str:slug>/",views.pharmacie_detail, name="pharmacie"),
+] 
+# + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+
+

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>{{ pharmacie.name }}</h2>
+    <h3>{{ pharmacie.email}}<h3>
+    <h3>{{ pharmacie.telephone}}<h3>
+    <h4>{{ pharmacie.adresse}}<h4>
+    <img src="{{ pharmacie.thumbnail}}" alt= "{{ pharmacie.name }}", style="max-width:250px"> 
+    <p>{{ pharmacie.description }}</p>
+
+
+{% endblock%}
