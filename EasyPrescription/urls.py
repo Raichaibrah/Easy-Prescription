@@ -24,8 +24,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.index, name='index'),
      path("pharmacie/<str:slug>/",views.pharmacie_detail, name="pharmacie"),
-] 
-# + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+]  + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 
 

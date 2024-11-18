@@ -8,7 +8,7 @@
 
 {%for pharmacie in pharmacies%}
     <h2>{{ pharmacie.name }}</h2>
-    <img src="{{ pharmacie.thumbnail}}" alt= "{{ pharmacie.name }}", style="max-width:250px"> 
+    <img src="{{ pharmacie.thumbnail.url }}" alt= "{{ pharmacie.name }}", style="max-width:250px"> 
     <a href="{{ pharmacie.get_absolute_url }}">Voir la pharmacie</a> 
 
 {% endfor %}    
