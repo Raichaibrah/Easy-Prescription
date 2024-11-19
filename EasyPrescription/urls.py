@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from dashboard import views
 from EasyPrescription import settings
 from django.conf.urls.static import static
@@ -28,6 +28,7 @@ urlpatterns = [
     path("signup/", signup, name="signup"),
     path("login/", login_user, name="login"),
     path("logout/", logout_user, name="logout"),
+    path('fichiers/', include('fichiers.urls')),
 ]  + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 
