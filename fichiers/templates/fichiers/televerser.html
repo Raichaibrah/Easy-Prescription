@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Téléverser un fichier</title>
+</head>
+<body>
+    <h1>Téléverser un fichier</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Téléverser</button>
+    </form>
+</body>
+</html>
