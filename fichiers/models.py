@@ -1,9 +1,9 @@
 from django.db import models
 
 class Fichier(models.Model):
-    titre = models.CharField(max_length=100)
-    fichier = models.FileField(upload_to='uploads/')  # ou 'images/' pour des images
-    date_ajout = models.DateTimeField(auto_now_add=True)
+    nom = models.CharField(max_length=255)
+    fichier = models.FileField(upload_to='uploads/', blank=True, null=True)  # Champ temporaire pour garder une copie locale
+    drive_url = models.URLField(blank=True, null=True)  # Lien Google Drive
 
-    def __nom__(self):
-        return self.titre
+    def __name__(self):
+        return self.nom
