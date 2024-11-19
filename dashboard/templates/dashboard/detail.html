@@ -1,13 +1,71 @@
-{% extends "base.html" %}
+
+{% extends 'base.html' %}
 
 {% block content %}
+    <style>
+        /* Style spécifique à la page de détails de la pharmacie */
+        .pharmacy-detail-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-    <h2>{{ pharmacie.name }}</h2>
-    <h3>{{ pharmacie.email}}<h3>
-    <h3>{{ pharmacie.telephone}}<h3>
-    <h4>{{ pharmacie.adresse}}<h4>
-    <img src="{{ pharmacie.thumbnail.url}}" alt= "{{ pharmacie.name }}", style="max-width:250px"> 
-    <p>{{ pharmacie.description }}</p>
+        .pharmacy-detail-container h2 {
+            font-size: 32px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
+        .pharmacy-detail-container h3,
+        .pharmacy-detail-container h4 {
+            font-size: 20px;
+            color: #555;
+            margin: 10px 0;
+        }
 
-{% endblock%}
+        .pharmacy-detail-container p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .pharmacy-detail-container img {
+            display: block;
+            max-width: 100%;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <div class="pharmacy-detail-container">
+        <h2>{{ pharmacie.name }}</h2>
+
+        <h3>Email: {{ pharmacie.email }}</h3>
+        <h3>Téléphone: {{ pharmacie.telephone }}</h3>
+        <h4>Adresse: {{ pharmacie.adresse }}</h4>
+
+        <img src="{{ pharmacie.thumbnail.url }}" alt="{{ pharmacie.name }}">
+
+        <p>{{ pharmacie.description }}</p>
+
+        <!-- Lien pour revenir à la liste des pharmacies -->
+        <a href="{% url 'dashboard' %}" class="back-link">Retour à la liste des pharmacies</a>
+    </div>
+{% endblock %}

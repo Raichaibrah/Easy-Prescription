@@ -14,3 +14,6 @@ def pharmacie_detail(request, slug):
     pharmacie = get_object_or_404(Pharmacie, slug=slug)
     print("pharmacie : ",pharmacie.thumbnail)
     return render(request, 'dashboard/detail.html', context={"pharmacie": pharmacie})
+
+
+
