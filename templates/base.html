@@ -2,28 +2,102 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenue chez Easyprescription</title>
+    <style>
+        /* Style général */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        nav form {
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        nav button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        nav button:hover {
+            background-color: #0056b3;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #f1f1f1;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
+    <header>
+        <h1>Bienvenue chez Easyprescription</h1>
+    </header>
 
-<a href="{% url 'index' %}">
-<h1>EasyPrescription<h1>
-</a>                                           C
+    <nav>
+        {% if user.is_authenticated %}
+            <span>Bonjour, {{ user.username }}</span>
+            <form action="{% url 'logout' %}" method="get">
+                <button type="submit">Déconnexion</button>
+            </form>
+        {% else %}
+            <form action="{% url 'login' %}" method="get">
+                <button type="submit">Connexion</button>
+            </form>
+            <form action="{% url 'signup' %}" method="get">
+                <button type="submit">Inscription</button>
+            </form>
+        {% endif %}
+    </nav>
 
-{% if user.is_authenticated %}
-    {{ user.username }}
-    <a href="{% url 'logout' %}">Déconnexion</a>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
 
-
-{% else %}
-<a href="{% url 'login' %}">Connexion</a>
-<a href="{% url 'signup' %}">S'inscrire</a>
-{% endif %}
-
-{% block content %}
-
-{% endblock %}
-
+    <footer>
+        <p>&copy; 2024 Easyprescription - Tous droits réservés.</p>
+    </footer>
 </body>
 </html>
