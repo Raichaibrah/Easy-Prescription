@@ -19,11 +19,15 @@ from django.urls import path
 from dashboard import views
 from EasyPrescription import settings
 from django.conf.urls.static import static
+from users.views import signup, logout_user, login_user
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.index, name='index'),
-     path("pharmacie/<str:slug>/",views.pharmacie_detail, name="pharmacie"),
+    path("pharmacie/<str:slug>/",views.pharmacie_detail, name="pharmacie"),
+    path("signup/", signup, name="signup"),
+    path("login/", login_user, name="login"),
+    path("logout/", logout_user, name="logout"),
 ]  + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 
