@@ -21,6 +21,7 @@
     <thead>
       <tr>
         <th>ID</th>
+        <th>Nom</th>
         <th>Pharmacie</th>
         <th>Date de création</th>
         <th>Statut</th>
@@ -31,6 +32,7 @@
       {% for ordonnance in ordonnances %}
         <tr>
           <td>{{ ordonnance.id }}</td>
+          <td>{{ ordonnance.nom_fichier }}</td>
           <td>{{ ordonnance.pharmacie.name }}</td>
           <td>{{ ordonnance.date_creation }}</td>
           <td>{{ ordonnance.get_statut_display }}</td>

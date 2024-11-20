@@ -27,7 +27,8 @@ def televerser_ordonnance(request):
                 user=request.user,
                 pharmacie=pharmacie,
                 commentaire=commentaire,
-                drive_file_url=drive_url
+                drive_file_url=drive_url,
+                nom_fichier=nom_personnalise
             )
 
             # Nettoyage du fichier temporaire local
