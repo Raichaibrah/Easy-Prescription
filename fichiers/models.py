@@ -1,10 +1,20 @@
 from django.db import models
+from django.conf import settings
+from pharmacies.models import Pharmacie  # Importez correctement le modèle Pharmacie
 
-class Fichier(models.Model):
-    nom = models.CharField(max_length=255)
-    fichier = models.FileField(upload_to='uploads/', blank=True, null=True)
-    drive_url = models.URLField(blank=True, null=True)
-    commentaires = models.TextField(blank=True, null=True)  # Stocker les commentaires optionnellement
+class Ordonnance(models.Model):
+    STATUT_CHOICES = [
+        ('en_attente', 'En attente'),
+        ('traitee', 'Traité'),
+        ('annulee', 'Annulée'),
+    ]
+    
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    pharmacie = models.ForeignKey(Pharmacie, on_delete=models.CASCADE)
+    date_creation = models.DateTimeField(auto_now_add=True)
+    statut = models.CharField(max_length=20, choices=STATUT_CHOICES, default='en_attente')
+    commentaire = models.TextField(blank=True, null=True)  # Commentaire fourni par l'utilisateur
+    drive_file_url = models.URLField(blank=True, null=True)  # URL du fichier téléversé
 
-    def __name__(self):
-        return self.nom
+    def __str__(self):
+        return f"Ordonnance {self.id} - {self.get_statut_display()}"

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Ordonnance
+from fichiers.models import Ordonnance
 from django.contrib.auth.decorators import login_required
 
 @login_required
