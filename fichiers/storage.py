@@ -13,12 +13,34 @@ class GoogleDriveStorage:
         self.service = build('drive', 'v3', credentials=self.credentials)
 
     def upload_file(self, file_path, file_name):
+        # Création des métadonnées pour le fichier sur Drive
         file_metadata = {'name': file_name, 'parents': [self.folder_id]}
         media = MediaFileUpload(file_path, resumable=True)
-        uploaded_file = self.service.files().create( #pylint: disable=no-member
-            body=file_metadata, media_body=media, fields='id, webContentLink'
+        
+        # Téléchargement du fichier
+        uploaded_file = self.service.files().create(  # pylint: disable=no-member
+            body=file_metadata, media_body=media, fields='id'
         ).execute()
-        return uploaded_file.get('webContentLink')  # Retourne le lien accessible
+
+        # Récupération de l'ID du fichier
+        file_id = uploaded_file.get('id')
+        
+        # Rendre le fichier public
+        self.make_public(file_id)
+
+        # Retourner l'URL publique du fichier
+        return f'https://drive.google.com/uc?id={file_id}'
+
+    def make_public(self, file_id):
+        """Rendre un fichier accessible publiquement sur Google Drive"""
+        self.service.permissions().create( #pylint: disable=no-member
+            fileId=file_id,
+            body={
+                'role': 'reader',
+                'type': 'anyone',
+            }
+        ).execute()
 
     def delete_file(self, file_id):
-        self.service.files().delete(fileId=file_id).execute() #pylint: disable=no-member
+        """Supprimer un fichier de Google Drive"""
+        self.service.files().delete(fileId=file_id).execute()  # pylint: disable=no-member
