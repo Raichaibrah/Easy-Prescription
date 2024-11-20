@@ -105,19 +105,9 @@
     </style>
 
     <div class="dashboard-container">
-        <h1>Bienvenue chez Easyprescription</h1>
+        <h1>Trouver la pharmacie la plus proche</h1>
 
-        {% if user.is_authenticated %}
-            <form action="{% url 'profil' %}" method="get">
-                <button type="submit" class="profile-button">Mon Profil</button>
-                <a href="/fichiers/televerser" class="btn btn-primary">Téléverser des fichiers</a>
-
-            </form>
-            <form action="{% url 'historique_ordonnances' %}" method="get">
-                <button type="submit" class="profile-button">Mes ordonnances</button>
-            </form>
-
-        {% endif %}
+        
 
         <!-- Barre de recherche -->
         <div class="search-bar">

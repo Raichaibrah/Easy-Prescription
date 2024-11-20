@@ -53,8 +53,13 @@
         <h1>Bienvenue sur l'application Easyprescription</h1>
         <p class="intro-text">L'application Easyprescription met en relations clients et pharmaciens, elle permet au clients de déposer leur ordonnance afin de simplifier les démarches sur place.</p>
         <div class="menu">
-            <a href="{% url 'dashboard:index' %}">Voir toutes les pharmacies</a>
-            <a href="{% url 'dashboard:dashboard' %}">Rechercher une pharmacie</a>
+            <a href="{% url 'dashboard:index' %}">Voir les pharmacies</a>
+            
+            {% if user.is_authenticated %}
+                <a href="{% url 'fichiers:televerser_fichier' %}">Déposer mon ordonnance</a>
+            {% else %}
+                <a href="{% url 'login' %}">Déposer mon ordonnance</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
