@@ -121,7 +121,7 @@
 
         <!-- Barre de recherche -->
         <div class="search-bar">
-            <form action="{% url 'dashboard' %}" method="GET">
+            <form action="{% url 'dashboard:dashboard' %}" method="GET">
                 <input type="text" name="search_city" value="{{ search_city }}" placeholder="Entrez une ville" />
                 <button type="submit">Rechercher</button>
             </form>

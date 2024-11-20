@@ -21,12 +21,25 @@
             background-color: #007bff;
             color: white;
             padding: 10px 20px;
-            text-align: center;
+            text-align: left;  /* Aligner le contenu à gauche */
+            display: flex;
+            align-items: center;
         }
 
         header h1 {
             margin: 0;
             font-size: 24px;
+            margin-left: 10px; /* Espacement à gauche du titre */
+        }
+
+        header a.logo {
+            display: inline-block;
+            margin-right: 20px;  /* Espacement entre le logo et le texte */
+        }
+
+        header a.logo img {
+            width: 40px;  /* Ajustez la taille du logo selon vos préférences */
+            height: auto;
         }
 
         nav {
@@ -74,6 +87,10 @@
 
 <body>
     <header>
+        <!-- Lien vers la page d'accueil avec le logo -->
+        <a href="{% url 'home' %}" class="logo">
+            <img src="/path/to/logo_pharma.png" alt="Logo Easyprescription">
+        </a>
         <h1>Bienvenue chez Easyprescription</h1>
     </header>
 

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        /* Style spécifique à la page d'accueil */
+        .home-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-container h1 {
+            font-size: 32px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px; /* Espacement réduit pour laisser de la place au texte */
+        }
+
+        .home-container .intro-text {
+            font-size: 18px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px; /* Espacement entre le texte et les boutons */
+        }
+
+        .home-container .menu {
+            display: flex;
+            justify-content: space-between; /* Place les boutons côte à côte */
+            gap: 15px;
+        }
+
+        .home-container .menu a {
+            display: block;
+            text-align: center;
+            padding: 12px 20px; /* Réduit la taille des boutons */
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px; /* Taille des textes des boutons réduite */
+            flex: 1; /* Chaque bouton prend une largeur égale */
+        }
+
+        .home-container .menu a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <div class="home-container">
+        <h1>Bienvenue sur l'application Easyprescription</h1>
+        <p class="intro-text">L'application Easyprescription met en relations clients et pharmaciens, elle permet au clients de déposer leur ordonnance afin de simplifier les démarches sur place.</p>
+        <div class="menu">
+            <a href="{% url 'dashboard:index' %}">Voir toutes les pharmacies</a>
+            <a href="{% url 'dashboard:dashboard' %}">Rechercher une pharmacie</a>
+        </div>
+    </div>
+{% endblock %}
+
+
