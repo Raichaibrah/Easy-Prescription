@@ -1,15 +1,86 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Téléverser un fichier</title>
-</head>
-<body>
-    <h1>Téléverser un fichier</h1>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Téléverser</button>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        /* Style spécifique à la page de téléversement */
+        .upload-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-container h1 {
+            text-align: center;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .upload-form input[type="file"] {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 80%;
+        }
+
+        .upload-form button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .success-message {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #28a745;
+        }
+
+        .error-message {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #dc3545;
+        }
+    </style>
+
+    <div class="upload-container">
+        <h1>Téléverser votre ordonnance</h1>
+
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Téléverser</button>
+        </form>
+
+        {% if success %}
+            <div class="success-message">
+                Le fichier a été téléversé avec succès !
+            </div>
+        {% elif error %}
+            <div class="error-message">
+                Une erreur s'est produite lors du téléversement du fichier.
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
