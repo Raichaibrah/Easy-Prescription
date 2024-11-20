@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from fichiers.forms import FichierForm
 from fichiers.models import Fichier
-from fichiers.storage import GoogleDriveStorage
 import os
+from fichiers.storage import GoogleDriveStorage  # Import de la classe GoogleDriveStorage (voir plus bas)
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
 def televerser_fichier(request):
     if request.method == 'POST' and request.FILES['fichier']:
         form = FichierForm(request.POST, request.FILES)
@@ -45,3 +48,4 @@ def televerser_fichier(request):
         form = FichierForm()
 
     return render(request, 'fichiers/televerser.html', {'form': form})
+

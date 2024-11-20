@@ -1,8 +1,10 @@
+
+
 {% extends "base.html" %}
 
 {% block content %}
     <style>
-        /* Style spécifique à la page de profil */
+        /* Styles spécifiques pour le profil */
         .profile-container {
             max-width: 400px;
             margin: 50px auto;
@@ -19,25 +21,14 @@
             color: #333;
         }
 
-        .profile-container label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
-            text-align: left;
-        }
-
-        .profile-container input {
-            width: 100%;
-            padding: 10px;
+        .profile-container .info {
             margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
         }
 
-        .profile-container button {
+        .profile-container button, .profile-container a {
+            display: block;
             width: 100%;
+            margin: 10px 0;
             padding: 10px;
             background-color: #007bff;
             color: white;
@@ -47,19 +38,11 @@
             font-size: 16px;
         }
 
-        .profile-container button:hover {
+        .profile-container button:hover, .profile-container a:hover {
             background-color: #0056b3;
         }
 
-        .message-container {
-            margin-top: 15px;
-            color: green;
-            font-size: 14px;
-        }
-
         .back-link {
-            margin-top: 20px;
-            display: block;
             text-align: center;
             color: #007bff;
             text-decoration: none;
@@ -72,27 +55,34 @@
     </style>
 
     <div class="profile-container">
-        <h1>Profil de {{ user.username }}</h1>
+        <h1>Profil de {{ utilisateur.username }}</h1>
 
-        <form method="POST">
-            {% csrf_token %}
-            <div>
-                <!-- Affichage des champs du formulaire avec un design cohérent -->
-                {{ form.as_p }}
+        {% if not edit_mode %}
+            <!-- Affichage des informations du profil -->
+            <div class="info">
+                <p><strong>Âge :</strong> {{ utilisateur.age }}</p>
+                <p><strong>Poids (kg) :</strong> {{ utilisateur.poids }}</p>
+                <p><strong>Taille (cm) :</strong> {{ utilisateur.taille }}</p>
+                <p><strong>Numéro de téléphone :</strong> {{ utilisateur.tel }}</p>
+                <p><strong>Adresse :</strong> {{ utilisateur.adresse }}</p>
+                <p><strong>Ville :</strong> {{ utilisateur.ville }}</p>
+                <p><strong>Code postal :</strong> {{ utilisateur.code_postal }}</p>
+                <p><strong>Pays :</strong> {{ utilisateur.pays }}</p>
+                <p><strong>Groupe sanguin :</strong> {{ utilisateur.groupe_sanguin }}</p>
             </div>
-            <button type="submit">Mettre à jour</button>
-        </form>
-
-        {% if messages %}
-            <div class="message-container">
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
-            </div>
+            <a href="?edit=1">Modifier les informations</a>
+        {% else %}
+            <!-- Affichage du formulaire d'édition -->
+            <form method="POST">
+                {% csrf_token %}
+                <div>
+                    {{ form.as_p }}
+                </div>
+                <button type="submit">Mettre à jour</button>
+            </form>
         {% endif %}
 
-        <!-- Lien vers une autre page, par exemple le tableau de bord -->
+        <!-- Lien pour revenir au tableau de bord -->
         <a href="{% url 'dashboard' %}" class="back-link">Retour au tableau de bord</a>
     </div>
 {% endblock %}
-
