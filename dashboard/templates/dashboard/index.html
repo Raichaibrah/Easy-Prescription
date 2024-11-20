@@ -110,6 +110,8 @@
         {% if user.is_authenticated %}
             <form action="{% url 'profil' %}" method="get">
                 <button type="submit" class="profile-button">Mon Profil</button>
+                <a href="/fichiers/televerser" class="btn btn-primary">Téléverser des fichiers</a>
+
             </form>
         {% endif %}
 
