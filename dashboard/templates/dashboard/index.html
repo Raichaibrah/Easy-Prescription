@@ -113,6 +113,10 @@
                 <a href="/fichiers/televerser" class="btn btn-primary">Téléverser des fichiers</a>
 
             </form>
+            <form action="{% url 'historique_ordonnances' %}" method="get">
+                <button type="submit" class="profile-button">Mes ordonnances</button>
+            </form>
+
         {% endif %}
 
         <!-- Barre de recherche -->
