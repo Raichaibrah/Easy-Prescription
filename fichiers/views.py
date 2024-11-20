@@ -28,3 +28,4 @@ def televerser_fichier(request):
         form = FichierForm()
 
     return render(request, 'fichiers/televerser.html', {'form': form})
+
