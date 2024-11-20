@@ -31,6 +31,7 @@ urlpatterns = [
     path('fichiers/', include('fichiers.urls')),
     path('users/', include('users.urls')),
     path('dashboard/', include('dashboard.urls')),
+    path('prescriptions/', include('prescriptions.urls')), 
 ]  + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 

@@ -81,6 +81,10 @@
             <form action="{% url 'profil' %}" method="get">
                 <button type="submit" class="profile-button">Mon Profil</button>
             </form>
+            <form action="{% url 'historique_ordonnances' %}" method="get">
+                <button type="submit" class="profile-button">Mes ordonnances</button>
+            </form>
+
         {% endif %}
 
         <div class="pharmacy-list">
