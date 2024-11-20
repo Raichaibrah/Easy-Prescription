@@ -1,7 +1,8 @@
 from django import forms
 
 class FichierForm(forms.Form):
-    fichier = forms.FileField(label="Fichier")
+    fichier = forms.FileField(
+        label="Fichier")
     nom_personnalise = forms.CharField(
         label="Nom du fichier (optionnel)", max_length=255, required=False
     )
