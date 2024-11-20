@@ -25,7 +25,7 @@
         <th>Pharmacie</th>
         <th>Date de création</th>
         <th>Statut</th>
-        <th>Image de l'ordonnance</th>
+        <th>Lien vers votre ordonnance</th>
       </tr>
     </thead>
     <tbody>
@@ -37,14 +37,12 @@
           <td>{{ ordonnance.date_creation }}</td>
           <td>{{ ordonnance.get_statut_display }}</td>
           <td>
-            {% if ordonnance.ordonnance_image %}
-              <img src="{{ ordonnance.ordonnance_image.url }}" alt="Ordonnance Image" class="ordonnance-image"/>
-            {% else %}
-              <span>Aucune image</span>
-            {% endif %}
+            <!-- Directement afficher l'URL dans un lien pour vérifier que l'URL est correcte -->
+            <a href="{{ ordonnance.drive_file_url }}" target="_blank">{{ ordonnance.drive_file_url }}</a>
           </td>
         </tr>
       {% empty %}
+        <!-- Affiche cette ligne si la liste d'ordonnances est vide -->
         <tr>
           <td colspan="5">Aucune ordonnance soumise.</td>
         </tr>

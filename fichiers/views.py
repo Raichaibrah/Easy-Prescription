@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from fichiers.forms import OrdonnanceForm
 from fichiers.models import Ordonnance
 from fichiers.storage import GoogleDriveStorage  # Assurez-vous que cette classe fonctionne correctement
-import os 
+import os
+
 @login_required
 def televerser_ordonnance(request):
     if request.method == 'POST':
@@ -20,10 +21,12 @@ def televerser_ordonnance(request):
             with open(file_path, 'wb+') as destination:
                 for chunk in fichier.chunks():
                     destination.write(chunk)
+            
+            # Appel de la méthode pour uploader et obtenir l'URL publique
             drive_url = storage.upload_file(file_path, nom_personnalise)
 
-            # Création de l'objet Ordonnance
-            ordonnance = Ordonnance.objects.create(
+            # Création de l'objet Ordonnance avec l'URL publique
+            ordonnance = Ordonnance.objects.create( #pylint: disable=no-member
                 user=request.user,
                 pharmacie=pharmacie,
                 commentaire=commentaire,
