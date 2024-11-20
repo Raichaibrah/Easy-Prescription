@@ -73,13 +73,45 @@
         .pharmacy-card a:hover {
             text-decoration: underline;
         }
+
+        .search-bar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-bar input {
+            padding: 8px;
+            font-size: 16px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-bar button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
     </style>
 
     <div class="dashboard-container">
         <h1>Bienvenue chez Easyprescription</h1>
+
         {% if user.is_authenticated %}
             <form action="{% url 'profil' %}" method="get">
                 <button type="submit" class="profile-button">Mon Profil</button>
+                <a href="/fichiers/televerser" class="btn btn-primary">Téléverser des fichiers</a>
+
             </form>
             <form action="{% url 'historique_ordonnances' %}" method="get">
                 <button type="submit" class="profile-button">Mes ordonnances</button>
@@ -87,15 +119,31 @@
 
         {% endif %}
 
+        <!-- Barre de recherche -->
+        <div class="search-bar">
+            <form action="{% url 'dashboard' %}" method="GET">
+                <input type="text" name="search_city" value="{{ search_city }}" placeholder="Entrez une ville" />
+                <button type="submit">Rechercher</button>
+            </form>
+        </div>
+
         <div class="pharmacy-list">
-            {% for pharmacie in pharmacies %}
-                <div class="pharmacy-card">
-                    <h2>{{ pharmacie.name }}</h2>
-                    <img src="{{ pharmacie.thumbnail.url }}" alt="{{ pharmacie.name }}">
-                    <a href="{{ pharmacie.get_absolute_url }}">Voir la pharmacie</a>
-                </div>
-            {% endfor %}
+            {% if pharmacies %}
+                {% for pharmacie in pharmacies %}
+                    <div class="pharmacy-card">
+                        <h2>{{ pharmacie.name }}</h2>
+                        {% if pharmacie.thumbnail %}
+                            <img src="{{ pharmacie.thumbnail.url }}" alt="{{ pharmacie.name }}">
+                        {% endif %}
+                        <p>{{ pharmacie.adresse }}</p>
+                        <p>{{ pharmacie.ville }}</p>
+                        <p>{{ pharmacie.telephone }}</p>
+                        <a href="{{ pharmacie.get_absolute_url }}">Voir la pharmacie</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Aucune pharmacie trouvée pour cette ville.</p>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
-

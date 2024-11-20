@@ -15,7 +15,7 @@ class Pharmacie(models.Model):
     name = models.CharField(max_length=128)
     slug = models.SlugField(max_length=128)
     adresse = models.CharField(max_length=256)
-    ville = models.CharField(max_length=32)
+    ville = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
     telephone = models.CharField(max_length=15, blank=True, null=True)
     latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)

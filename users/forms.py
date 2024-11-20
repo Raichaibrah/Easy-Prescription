@@ -18,4 +18,3 @@ class ProfileForm(forms.ModelForm):
 
         }
 
-
