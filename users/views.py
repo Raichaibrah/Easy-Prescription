@@ -5,6 +5,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import ProfileForm
+from django.shortcuts import render, redirect
+from .forms import ProfileForm
+
 
 
 Utilisateur = get_user_model()
@@ -48,14 +51,20 @@ def logout_user(request):
 @login_required
 def profil(request):
     utilisateur = request.user
+
+    # Vérifiez si le mode d'édition est activé
+    edit_mode = request.GET.get('edit') == '1'
+
     if request.method == "POST":
         form = ProfileForm(request.POST, instance=utilisateur)
         if form.is_valid():
             form.save()
             messages.success(request, "Profil mis à jour avec succès.")
-            return redirect('profil')
+            return redirect('profil')  # Redirige pour éviter une nouvelle soumission de formulaire
     else:
         form = ProfileForm(instance=utilisateur)
 
-    return render(request, 'users/profil.html', {'form': form})
+    return render(request, 'users/profil.html', {'form': form, 'edit_mode': edit_mode, 'utilisateur': utilisateur})
+
+
 
