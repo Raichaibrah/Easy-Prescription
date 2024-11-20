@@ -15,6 +15,7 @@ class Ordonnance(models.Model):
     statut = models.CharField(max_length=20, choices=STATUT_CHOICES, default='en_attente')
     commentaire = models.TextField(blank=True, null=True)  # Commentaire fourni par l'utilisateur
     drive_file_url = models.URLField(blank=True, null=True)  # URL du fichier téléversé
+    nom_fichier=models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
         return f"Ordonnance {self.id} - {self.get_statut_display()}"
