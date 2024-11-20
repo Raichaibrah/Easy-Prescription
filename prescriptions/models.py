@@ -5,6 +5,7 @@ from django.db import models
 from django.db import models
 from django.contrib.auth.models import User
 from pharmacies.models import Pharmacie  # Assurez-vous que l'importation est correcte
+from django.conf import settings
 
 class Ordonnance(models.Model):
     # Statut de l'ordonnance : en attente, traitée, etc.
@@ -15,7 +16,7 @@ class Ordonnance(models.Model):
     ]
     
     # L'utilisateur qui soumet l'ordonnance (Patient)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL , on_delete=models.CASCADE)
     
     # La pharmacie à laquelle l'ordonnance est envoyée
     pharmacie = models.ForeignKey(Pharmacie, on_delete=models.CASCADE)
