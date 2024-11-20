@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from fichiers.forms import FichierForm
+from pharmacies.fonctions_utiles import fonction_1, fonction_2 
 
 def televerser_fichier(request):
     if request.method == 'POST':
@@ -11,3 +12,4 @@ def televerser_fichier(request):
         form = FichierForm()
     
     return render(request, 'fichiers/televerser.html', {'form': form})
+
