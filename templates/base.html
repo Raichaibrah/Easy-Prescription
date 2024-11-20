@@ -186,9 +186,18 @@
 
         <!-- Boutons alignés à droite -->
         <div class="auth-buttons">
+
+            <form action="{% url 'home' %}" method="get" class="inline-form">
+                <button type="submit">Accueil</button>
+            </form>
+
             {% if user.is_authenticated %}
-                <span>{{ user.username }}</span>
-                <a href="{% url 'profil' %}" class="btn btn-profil">Profil</a>
+                
+                <form action="{% url 'profil' %}" method="get" class="inline-form">
+                    <button type="submit">Profil</button>
+                </form>
+
+                
                 <form action="{% url 'logout' %}" method="get" class="inline-form">
                     <button type="submit">Déconnexion</button>
                 </form>
