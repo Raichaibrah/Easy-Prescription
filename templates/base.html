@@ -187,10 +187,14 @@
         <!-- Boutons alignés à droite -->
         <div class="auth-buttons">
             {% if user.is_authenticated %}
-                <span> {{ user.username }}</span>
+                <span>{{ user.username }}</span>
+                <a href="{% url 'profil' %}" class="btn btn-profil">Profil</a>
                 <form action="{% url 'logout' %}" method="get" class="inline-form">
                     <button type="submit">Déconnexion</button>
                 </form>
+            
+        
+        
             {% else %}
                 <form action="{% url 'login' %}" method="get" class="inline-form">
                     <button type="submit">Connexion</button>
