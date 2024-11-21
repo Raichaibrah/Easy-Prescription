@@ -11,6 +11,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             text-align: center;
+            font-family: 'Roboto', sans-serif;
         }
 
         .login-container h1 {
@@ -24,6 +25,7 @@
             margin-bottom: 5px;
             font-weight: bold;
             color: #555;
+            text-align: left;
         }
 
         .login-container input {
@@ -33,34 +35,43 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .login-container input:focus {
+            border-color: #007bff; /* Accentuation du champ de saisie en bleu */
+            outline: none;
         }
 
         .login-container button {
             width: 100%;
-            padding: 10px;
-            background-color: #007bff;
+            padding: 12px;
+            background-color: #007bff; /* Bleu pour le bouton */
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .login-container button:hover {
-            background-color: #0056b3;
+            background-color: #0056b3; /* Bleu plus foncé au survol */
+            transform: scale(1.05); /* Effet de zoom au survol */
         }
 
         .register-link {
             margin-top: 15px;
             display: block;
             text-align: center;
-            color: #007bff;
+            color: #007bff; /* Bleu pour le lien */
             text-decoration: none;
             font-size: 14px;
         }
 
         .register-link:hover {
             text-decoration: underline;
+            color: #0056b3; /* Bleu plus foncé au survol */
         }
     </style>
 
@@ -70,11 +81,11 @@
             {% csrf_token %}
             <p>
                 <label for="username">Nom d'utilisateur</label>
-                <input id="username" type="text" name="username" placeholder="Entrez votre nom d'utilisateur">
+                <input id="username" type="text" name="username" placeholder="Entrez votre nom d'utilisateur" required>
             </p>
             <p>
                 <label for="password">Mot de passe</label>
-                <input id="password" type="password" name="password" placeholder="Entrez votre mot de passe">
+                <input id="password" type="password" name="password" placeholder="Entrez votre mot de passe" required>
             </p>
             <button type="submit">Connexion</button>
         </form>

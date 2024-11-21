@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if messages %}
+    <div class="alert-messages">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
   <!-- Conteneur principal qui englobe tout le contenu -->
   <div class="content-wrapper">
     <!-- Titre principal de la page -->
@@ -31,6 +38,7 @@
         <!-- En-tête du tableau avec les titres des colonnes -->
         <thead>
           <tr>
+            <th>ID</th> <!-- Nouvelle colonne pour l'ID -->
             <th>Nom du fichier</th>
             <th>Pharmacie</th>
             <th>Date de création</th>
@@ -45,6 +53,7 @@
           {% for ordonnance in ordonnances %}
             <tr>
               <!-- Affichage des données de l'ordonnance -->
+              <td>{{ ordonnance.id }}</td> <!-- Affichage de l'ID -->
               <td>{{ ordonnance.nom_fichier }}</td>
               <td>{{ ordonnance.pharmacie.name }}</td>
               <td>{{ ordonnance.date_creation }}</td>
@@ -57,11 +66,10 @@
                 <!-- Formulaire pour supprimer l'ordonnance -->
                 <form action="{% url 'supprimer_ordonnance' ordonnance.id %}" method="post">
                   {% csrf_token %}
-                  <!-- Bouton pour supprimer l'ordonnance, stylisé avec une classe spéciale pour les boutons d'alerte -->
                   <button type="submit" class="btn danger-btn">
-                    <i class="fas fa-trash-alt"></i> Supprimer
+                      <i class="fas fa-trash-alt"></i> Supprimer
                   </button>
-                </form>
+              </form>
               </td>
             </tr>
           {% empty %}
