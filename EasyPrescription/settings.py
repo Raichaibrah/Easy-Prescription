@@ -144,5 +144,5 @@ EMAIL_HOST = 'smtp.gmail.com'  # Utiliser le serveur SMTP de Gmail
 EMAIL_PORT = 587  # Port SMTP pour Gmail
 EMAIL_USE_TLS = True  # TLS est requis pour Gmail
 EMAIL_HOST_USER = 'easyprescription23@gmail.com'  # Votre adresse email
-EMAIL_HOST_PASSWORD = 'Easyprescription23'  # Votre mot de passe de l'email
+EMAIL_HOST_PASSWORD = 'hagt aoeo rmkz pfgn'  # Votre mot de passe de l'email
 DEFAULT_FROM_EMAIL = 'easyprescription23@gmail.com'
