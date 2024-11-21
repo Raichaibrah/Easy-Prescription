@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easyprescription</title>
-    <link rel="shortcut icon" href="./logo_pharma.png">
+    <link rel="shortcut icon" href="../logo_pharma.png" type="image/png">
+    <link rel="icon" href="../logo_pharma.ico" type="image/x-icon">
     {% block extra_css %} 
     {% endblock %}
     <style>
@@ -148,7 +149,9 @@
         <!-- Logo et titre -->
         <div class="logo-title">
             <a href="{% url 'home' %}" class="logo">
-                <img src="media/logo_pharma.png" alt="Logo Easyprescription">
+                {% load static %}
+
+                <img src="{% static 'logo_pharma.png' %}" alt="Logo Easyprescription">
             </a>
             <h1>Easyprescription</h1>
         </div>
