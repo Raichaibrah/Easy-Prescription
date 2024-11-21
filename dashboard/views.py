@@ -69,7 +69,7 @@ def contact_view(request):
 
             # Message de succès
             messages.success(request, "Votre message a été envoyé avec succès !")
-            return redirect('contact')  # Redirection vers la même page après l'envoi
+            return redirect('dashboard:contact')  # Redirection vers la même page après l'envoi
     else:
         form = ContactForm()
 
