@@ -1,0 +1,23 @@
+
+EasyPrescription
+Description
+EasyPrescription est une application permettant aux utilisateurs (patients) de soumettre leurs ordonnances et de les associer à une pharmacie pré-sélectionnée. L'application permet également aux patients de visualiser et de supprimer leurs ordonnances soumises. Ce projet ne traite pas de données sensibles réelles et simule le processus de soumission d'ordonnances à une pharmacie.
+
+Fonctionnalités principales du livrable actuel :
+
+Authentification et gestion des utilisateurs :
+Création d'un compte utilisateur (patients uniquement).
+Connexion et déconnexion.
+
+Soumission d'ordonnances :
+Formulaire permettant aux utilisateurs de télécharger une image de leur ordonnance (aucun traitement spécifique de l'image).
+Choix d'une pharmacie pré-sélectionnée dans la base de données.
+
+Tableau de bord utilisateur :
+Vue listant les ordonnances soumises par l'utilisateur avec leur statut (par exemple, "En attente").
+Option pour supprimer une ordonnance soumise.
+
+Fonctionnalité non développée pour ce livrable :
+Interface pour les pharmacies : Actuellement, les pharmacies sont pré-sélectionnées dans la base de données et aucune gestion active des ordonnances par les pharmacies (comme marquer une ordonnance comme "préparée") n'est implémentée dans cette version.
+
+Liste des Étudiants
