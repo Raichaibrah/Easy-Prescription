@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easyprescription</title>
     <!-- Icone de l'onglet -->
     <link rel="shortcut icon" href="./logo_pharma.png">
-    <!-- Bloc extra_css qui peut être surchargé par un template enfant -->
-    {% block extra_css %} 
-    {% endblock %}
     <style>
         /* Style général */
         body {
@@ -191,6 +187,11 @@
         <!-- Boutons alignés à droite -->
         <div class="auth-buttons">
 
+
+            <form action="{% url 'home' %}" method="get" class="inline-form">
+                <button type="submit">Accueil</button>
+            </form>
+
             <form action="{% url 'dashboard:page_pharmacie' %}" method="get" class="inline-form">
                 <button type="submit">Espace pharmacie</button>
             </form>
@@ -199,9 +200,6 @@
                 <button type="submit">Contact</button>
             </form>
 
-            <form action="{% url 'home' %}" method="get" class="inline-form">
-                <button type="submit">Accueil</button>
-            </form>
 
             {% if user.is_authenticated %}
                 
