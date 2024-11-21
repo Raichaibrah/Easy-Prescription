@@ -1,9 +1,13 @@
 # dashboard/urls.py
 from django.urls import path
 from . import views
+app_name = 'dashboard'  
 
 urlpatterns = [
-    #path('', views.index, name='dashboard'),  # Remplace 'dashboard' par 'index'
-    path('pharmacie/<slug:slug>/', views.pharmacie_detail, name='pharmacie_detail'),
-    path('', views.dashboard, name='dashboard'),
+    path('', views.home, name='home'),  # Page d'accueil
+    path('index/', views.index, name='index'),  # Liste des pharmacies
+    path('dashboard/', views.dashboard, name='dashboard'),  # Recherche
+    path('page-pharmacie/', views.page_pharmacie, name='page_pharmacie'),
+    path('contact/', views.contact_view, name='contact'),
+    path('<slug:slug>/', views.pharmacie_detail, name='pharmacie_detail'),  # Détails d'une pharmacie  
 ]

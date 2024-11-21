@@ -105,7 +105,7 @@
     </style>
 
     <div class="dashboard-container">
-        <h1>Bienvenue chez Easyprescription</h1>
+        <h1>Trouver la pharmacie la plus proche</h1>
 
         {% if user.is_authenticated %}
             <form action="{% url 'profil' %}" method="get">
@@ -119,7 +119,7 @@
 
         <!-- Barre de recherche -->
         <div class="search-bar">
-            <form action="{% url 'dashboard' %}" method="GET">
+            <form action="{% url 'dashboard:dashboard' %}" method="GET">
                 <input type="text" name="search_city" value="{{ search_city }}" placeholder="Entrez une ville" />
                 <button type="submit">Rechercher</button>
             </form>

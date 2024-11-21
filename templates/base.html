@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenue chez Easyprescription</title>
+    <title>Easyprescription</title>
     <!-- Icone de l'onglet -->
     <link rel="shortcut icon" href="./logo_pharma.png">
     <!-- Bloc extra_css qui peut être surchargé par un template enfant -->
@@ -21,17 +21,120 @@
             color: #333;
         }
 
+        
         header {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;  /* Pour séparer le logo, le titre et les boutons */
+            align-items: center;  /* Aligner verticalement */
+            padding: 10px;
+            position: relative;  /* Permet de maintenir le flux du document et l'affichage du bandeau */
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
         }
 
         header h1 {
             margin: 0;
-            font-size: 24px;
         }
+
+        /* Alignement des boutons de connexion/inscription */
+        .auth-buttons {
+            display: flex;
+            gap: 10px;  /* Espace entre les boutons */
+            align-items: center;  /* Aligner les boutons verticalement */
+        }
+
+        /* Styles pour les formulaires de boutons */
+        .header-button {
+            margin: 0;
+        }
+
+        button {
+            padding: 5px 15px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Positionnement des boutons dans le coin supérieur droit */
+        header form {
+            margin: 0;
+        }
+
+        header .auth-buttons {
+            position: absolute;
+            top: 10px;
+            right: 50px; /* Positionné à droite du header */
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Styles pour le bandeau */
+        .bandeau {
+            width: 100%;
+            background-color: #006400; /* Vert foncé pharmacie */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Espace entre le logo-titre et les boutons */
+            position: relative;
+            z-index: 1;
+            border-radius: 5px; /* Coins légèrement arrondis */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optionnel : légère ombre */
+        }
+
+        /* Logo et titre alignés horizontalement */
+        .logo-title {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            max-height: 50px; /* Ajuste la taille du logo */
+            margin-right: 10px; /* Espace entre le logo et le titre */
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: white; /* Titre blanc pour un bon contraste */
+        }
+
+        /* Boutons d'authentification alignés à droite */
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Espace entre les boutons */
+        }
+
+        .inline-form {
+            display: inline;
+        }
+
+        button {
+            background-color: white;
+            color: #006400;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #228b22; /* Vert clair au survol */
+            color: white;
+        }
+
 
         nav {
             margin: 10px 0;
@@ -75,26 +178,57 @@
         }
     </style>
 </head>
-
 <body>
-    <header>
-        <h1>Bienvenue chez Easyprescription</h1>
+    <header class="bandeau">
+        <!-- Logo et titre alignés -->
+        <div class="logo-title">
+            <a href="{% url 'home' %}" class="logo">
+                <img src="media/logo_pharma.png" alt="Logo Easyprescription">
+            </a>
+            <h1>Easyprescription</h1>
+        </div>
+
+        <!-- Boutons alignés à droite -->
+        <div class="auth-buttons">
+
+            <form action="{% url 'dashboard:page_pharmacie' %}" method="get" class="inline-form">
+                <button type="submit">Espace pharmacie</button>
+            </form>
+
+            <form action="{% url 'dashboard:contact' %}" method="get" class="inline-form">
+                <button type="submit">Contact</button>
+            </form>
+
+            <form action="{% url 'home' %}" method="get" class="inline-form">
+                <button type="submit">Accueil</button>
+            </form>
+
+            {% if user.is_authenticated %}
+                
+                <form action="{% url 'profil' %}" method="get" class="inline-form">
+                    <button type="submit">Profil</button>
+                </form>
+
+                
+                <form action="{% url 'logout' %}" method="get" class="inline-form">
+                    <button type="submit">Déconnexion</button>
+                </form>
+            
+        
+        
+            {% else %}
+                <form action="{% url 'login' %}" method="get" class="inline-form">
+                    <button type="submit">Connexion</button>
+                </form>
+                <form action="{% url 'signup' %}" method="get" class="inline-form">
+                    <button type="submit">Inscription</button>
+                </form>
+            {% endif %}
+        </div>
     </header>
 
     <nav>
-        {% if user.is_authenticated %}
-            <span>Bonjour, {{ user.username }}</span>
-            <form action="{% url 'logout' %}" method="get">
-                <button type="submit">Déconnexion</button>
-            </form>
-        {% else %}
-            <form action="{% url 'login' %}" method="get">
-                <button type="submit">Connexion</button>
-            </form>
-            <form action="{% url 'signup' %}" method="get">
-                <button type="submit">Inscription</button>
-            </form>
-        {% endif %}
+
     </nav>
 
     <main>
