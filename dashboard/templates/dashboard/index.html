@@ -107,16 +107,6 @@
     <div class="dashboard-container">
         <h1>Trouver la pharmacie la plus proche</h1>
 
-        {% if user.is_authenticated %}
-            <form action="{% url 'profil' %}" method="get">
-                <button type="submit" class="profile-button">Mon Profil</button>
-            </form>
-            <form action="{% url 'historique_ordonnances' %}" method="get">
-                <button type="submit" class="profile-button">Mes ordonnances</button>
-            </form>
-
-        {% endif %}
-
         <!-- Barre de recherche -->
         <div class="search-bar">
             <form action="{% url 'dashboard:dashboard' %}" method="GET">
