@@ -32,6 +32,14 @@ def dashboard(request):
 
     # Passer les pharmacies filtrées et la ville recherchée dans le template
     return render(request, 'dashboard/index.html', {'pharmacies': pharmacies, 'search_city': search_city})
-    
+
 def home(request):
     return render(request, 'dashboard/home.html')
+
+def page_pharmacie(request):
+    # Vous pouvez ajouter des données à rendre ici, comme des informations sur les pharmacies
+    context = {
+        'title': 'Page Pharmacie',
+        'message': 'Bienvenue sur la page des pharmacies!',
+    }
+    return render(request, 'dashboard/page_pharmacie.html', context)

@@ -179,13 +179,17 @@
         <!-- Logo et titre alignés -->
         <div class="logo-title">
             <a href="{% url 'home' %}" class="logo">
-                <img src="./logo_pharma.png" alt="Logo Easyprescription">
+                <img src="media/logo_pharma.png" alt="Logo Easyprescription">
             </a>
             <h1>Easyprescription</h1>
         </div>
 
         <!-- Boutons alignés à droite -->
         <div class="auth-buttons">
+
+            <form action="{% url 'dashboard:page_pharmacie' %}" method="get" class="inline-form">
+                <button type="submit">Espace pharmacie</button>
+            </form>
 
             <form action="{% url 'home' %}" method="get" class="inline-form">
                 <button type="submit">Accueil</button>
