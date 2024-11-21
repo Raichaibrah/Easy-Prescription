@@ -5,182 +5,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easyprescription</title>
-    <!-- Icone de l'onglet -->
     <link rel="shortcut icon" href="./logo_pharma.png">
-    <!-- Bloc extra_css qui peut être surchargé par un template enfant -->
     {% block extra_css %} 
     {% endblock %}
     <style>
         /* Style général */
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Roboto', sans-serif; /* Typographie plus moderne */
+            line-height: 1.8;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
+            background-color: #f4f7f6;
             color: #333;
+            font-size: 16px;
         }
 
-        
+        /* En-tête */
         header {
             display: flex;
-            justify-content: space-between;  /* Pour séparer le logo, le titre et les boutons */
-            align-items: center;  /* Aligner verticalement */
-            padding: 10px;
-            position: relative;  /* Permet de maintenir le flux du document et l'affichage du bandeau */
-        }
-
-        header .logo {
-            display: flex;
+            justify-content: space-between;
             align-items: center;
-        }
-
-        header h1 {
-            margin: 0;
-        }
-
-        /* Alignement des boutons de connexion/inscription */
-        .auth-buttons {
-            display: flex;
-            gap: 10px;  /* Espace entre les boutons */
-            align-items: center;  /* Aligner les boutons verticalement */
-        }
-
-        /* Styles pour les formulaires de boutons */
-        .header-button {
-            margin: 0;
-        }
-
-        button {
-            padding: 5px 15px;
-            border: none;
-            background-color: #007bff;
+            padding: 20px;
+            background-color: #006400; /* Couleur de fond verte */
             color: white;
-            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
         }
 
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Positionnement des boutons dans le coin supérieur droit */
-        header form {
-            margin: 0;
-        }
-
-        header .auth-buttons {
-            position: absolute;
-            top: 10px;
-            right: 50px; /* Positionné à droite du header */
-            display: flex;
-            gap: 10px;
-        }
-
-        /* Styles pour le bandeau */
-        .bandeau {
-            width: 100%;
-            background-color: #006400; /* Vert foncé pharmacie */
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between; /* Espace entre le logo-titre et les boutons */
-            position: relative;
-            z-index: 1;
-            border-radius: 5px; /* Coins légèrement arrondis */
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optionnel : légère ombre */
-        }
-
-        /* Logo et titre alignés horizontalement */
+        /* Logo et titre */
         .logo-title {
             display: flex;
             align-items: center;
         }
 
         .logo img {
-            max-height: 50px; /* Ajuste la taille du logo */
-            margin-right: 10px; /* Espace entre le logo et le titre */
+            max-height: 50px;
+            margin-right: 15px;
         }
 
         h1 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin: 0;
-            color: white; /* Titre blanc pour un bon contraste */
+            color: white;
         }
 
-        /* Boutons d'authentification alignés à droite */
+        /* Boutons d'authentification */
         .auth-buttons {
             display: flex;
             align-items: center;
-            gap: 10px; /* Espace entre les boutons */
+            gap: 15px;
         }
 
-        .inline-form {
-            display: inline;
+        .auth-buttons button {
+            background-color: #006400 !important; /* Couleur verte de la bande */
+            color: white !important; /* Texte en blanc */
+            padding: 10px 20px !important;
+            border: none !important;
+            border-radius: 5px !important;
+            cursor: pointer !important;
+            font-size: 0.9rem !important;
+            transition: background-color 0.3s ease, transform 0.2s ease !important;
         }
 
-        button {
-            background-color: white;
-            color: #006400;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease;
+        .auth-buttons button:hover {
+            background-color: #004d00 !important; /* Couleur plus sombre au survol */
+            transform: scale(1.05) !important; /* Effet de zoom au survol */
         }
 
-        button:hover {
-            background-color: #228b22; /* Vert clair au survol */
-            color: white;
+        .auth-buttons button:focus {
+            outline: none !important;
         }
 
-
+        /* Navigation */
         nav {
-            margin: 10px 0;
+            margin: 20px 0;
             text-align: center;
-        }
-
-        nav form {
-            display: inline-block;
-            margin: 0 5px;
         }
 
         nav button {
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
+            background-color: #006400 !important; /* Couleur verte de la bande */
+            color: white !important; /* Texte en blanc */
+            padding: 10px 20px !important;
+            border-radius: 5px !important;
+            cursor: pointer !important;
+            font-size: 14px !important;
+            transition: background-color 0.3s ease, transform 0.2s ease !important;
         }
 
         nav button:hover {
-            background-color: #0056b3;
+            background-color: #004d00 !important; /* Couleur plus sombre au survol */
+            transform: scale(1.05) !important;
         }
 
+        /* Contenu principal */
         main {
-            max-width: 800px;
+            max-width: 900px;
             margin: 20px auto;
-            background: white;
-            padding: 20px;
+            padding: 30px;
+            background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
+        /* Footer */
         footer {
             text-align: center;
-            margin-top: 20px;
-            padding: 10px 0;
+            margin-top: 30px;
+            padding: 20px 0;
             background-color: #f1f1f1;
             font-size: 14px;
+            color: #666;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Adaptabilité mobile */
+        @media (max-width: 768px) {
+            .logo img {
+                max-height: 40px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            .auth-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .auth-buttons button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
+
 <body>
-    <header class="bandeau">
-        <!-- Logo et titre alignés -->
+    <header>
+        <!-- Logo et titre -->
         <div class="logo-title">
             <a href="{% url 'home' %}" class="logo">
                 <img src="media/logo_pharma.png" alt="Logo Easyprescription">
@@ -188,48 +153,35 @@
             <h1>Easyprescription</h1>
         </div>
 
-        <!-- Boutons alignés à droite -->
+        <!-- Boutons d'authentification -->
         <div class="auth-buttons">
-
-            <form action="{% url 'dashboard:page_pharmacie' %}" method="get" class="inline-form">
+            <form action="{% url 'dashboard:page_pharmacie' %}" method="get">
                 <button type="submit">Espace pharmacie</button>
             </form>
-
-            <form action="{% url 'dashboard:contact' %}" method="get" class="inline-form">
+            <form action="{% url 'dashboard:contact' %}" method="get">
                 <button type="submit">Contact</button>
             </form>
-
-            <form action="{% url 'home' %}" method="get" class="inline-form">
+            <form action="{% url 'home' %}" method="get">
                 <button type="submit">Accueil</button>
             </form>
 
             {% if user.is_authenticated %}
-                
-                <form action="{% url 'profil' %}" method="get" class="inline-form">
+                <form action="{% url 'profil' %}" method="get">
                     <button type="submit">Profil</button>
                 </form>
-
-                
-                <form action="{% url 'logout' %}" method="get" class="inline-form">
+                <form action="{% url 'logout' %}" method="get">
                     <button type="submit">Déconnexion</button>
                 </form>
-            
-        
-        
             {% else %}
-                <form action="{% url 'login' %}" method="get" class="inline-form">
+                <form action="{% url 'login' %}" method="get">
                     <button type="submit">Connexion</button>
                 </form>
-                <form action="{% url 'signup' %}" method="get" class="inline-form">
+                <form action="{% url 'signup' %}" method="get">
                     <button type="submit">Inscription</button>
                 </form>
             {% endif %}
         </div>
     </header>
-
-    <nav>
-
-    </nav>
 
     <main>
         {% block content %}
@@ -240,4 +192,5 @@
         <p>&copy; 2024 Easyprescription - Tous droits réservés.</p>
     </footer>
 </body>
+
 </html>

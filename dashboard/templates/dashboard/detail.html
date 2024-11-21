@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
@@ -11,6 +10,7 @@
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-family: 'Roboto', sans-serif; /* Ajout d'une police moderne */
         }
 
         .pharmacy-detail-container h2 {
@@ -52,6 +52,50 @@
         .back-link:hover {
             text-decoration: underline;
         }
+
+        /* Boutons spécifiques */
+        .button {
+            background-color: #006400; /* Vert de la banderole */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-align: center;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .button:hover {
+            background-color: #004d00; /* Vert plus foncé pour l'effet au survol */
+            transform: scale(1.05); /* Effet de zoom au survol */
+        }
+
+        .button:focus {
+            outline: none;
+        }
+
+        /* Responsivité */
+        @media (max-width: 768px) {
+            .pharmacy-detail-container {
+                padding: 15px;
+                margin: 20px;
+            }
+
+            .pharmacy-detail-container h2 {
+                font-size: 28px;
+            }
+
+            .pharmacy-detail-container h3,
+            .pharmacy-detail-container h4 {
+                font-size: 18px;
+            }
+
+            .pharmacy-detail-container p {
+                font-size: 14px;
+            }
+        }
     </style>
 
     <div class="pharmacy-detail-container">
@@ -65,7 +109,9 @@
 
         <p>{{ pharmacie.description }}</p>
 
-        <!-- Lien pour revenir à la liste des pharmacies -->
-        <a href="{% url 'dashboard:dashboard' %}" class="back-link">Retour à la liste des pharmacies</a>
+        <!-- Bouton pour revenir à la liste des pharmacies -->
+        <a href="{% url 'dashboard:dashboard' %}" class="back-link">
+            <button class="button">Retour à la liste des pharmacies</button>
+        </a>
     </div>
 {% endblock %}

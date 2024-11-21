@@ -52,32 +52,48 @@ class GoogleDriveStorage:
             }
         ).execute()
 
+    from googleapiclient.errors import HttpError
+
     def get_file_id_by_name(self, file_name):
         try:
-        # Requête pour chercher 
-            results = self.service.files().list( #pylint: disable=no-member
-                q=f"name = '{file_name}'",  # Filtrer par nom
+            # Requête pour chercher le fichier sur Google Drive par son nom
+            results = self.service.files().list(  # pylint: disable=no-member
+                q=f"name = '{file_name}'",  # Filtrer par nom du fichier
                 spaces='drive',
-                fields="files(id, name)",  # Récupère uniquement l'ID et le nom
-                pageSize=1  # Un seul fichier attendu 
+                fields="files(id, name)",  # Récupère uniquement l'ID et le nom du fichier
+                pageSize=1  # Nous nous attendons à n'avoir qu'un seul fichier avec ce nom
             ).execute()
 
             files = results.get('files', [])
-        
+
             if not files:
                 print(f"Aucun fichier trouvé avec le nom : {file_name}")
                 return None
 
-        # Retourne l'ID du fichier
+            # Retourner l'ID du fichier trouvé
             file_id = files[0]['id']
             print(f"Fichier trouvé : {file_name} (ID : {file_id})")
             return file_id
 
         except HttpError as error:
-            print(f"Erreur lors de la recherche du fichier : {error}")
+            print(f"Erreur lors de la recherche du fichier dans Google Drive : {error}")
             return None
+        except Exception as e:
+            # Capture de toutes autres erreurs inattendues
+            print(f"Une erreur est survenue : {e}")
+            return None
+
     
     
     def delete_file(self, file_id):
-        """Supprimer un fichier de Google Drive"""
-        self.service.files().delete(fileId=file_id).execute()  # pylint: disable=no-member
+        """Supprimer un fichier de Google Drive."""
+        try:
+            # Tentative de suppression du fichier via l'API Google Drive
+            self.service.files().delete(fileId=file_id).execute()
+            print(f"Le fichier avec l'ID {file_id} a été supprimé avec succès.")
+        except HttpError as error:
+            # Gestion des erreurs HTTP, comme un fichier inexistant ou une permission manquante
+            print(f"Erreur lors de la suppression du fichier : {error}")
+        except Exception as e:
+            # Gestion des autres types d'erreurs (ex. problèmes de connexion, API indisponible, etc.)
+            print(f"Une erreur est survenue lors de la suppression : {e}")

@@ -2,7 +2,7 @@
 
 {% block content %}
     <style>
-        /* Style spécifique à la page d'accueil */
+        /* Style spécifique à la page de tableau de bord */
         .dashboard-container {
             max-width: 1000px;
             margin: 50px auto;
@@ -10,6 +10,7 @@
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-family: 'Roboto', sans-serif;
         }
 
         .dashboard-container h1 {
@@ -24,17 +25,19 @@
             width: 200px;
             margin: 20px auto;
             padding: 10px;
-            background-color: #007bff;
+            background-color: #006400; /* Couleur de la banderole */
             color: white;
             border: none;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
             text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .profile-button:hover {
-            background-color: #0056b3;
+            background-color: #004d00; /* Vert plus foncé au survol */
+            transform: scale(1.05); /* Effet de zoom */
         }
 
         .pharmacy-card {
@@ -66,7 +69,7 @@
         .pharmacy-card a {
             margin-top: 10px;
             font-size: 16px;
-            color: #007bff;
+            color: #006400; /* Couleur de la banderole pour le lien */
             text-decoration: none;
         }
 
@@ -91,17 +94,20 @@
 
         .search-bar button {
             padding: 8px 16px;
-            background-color: #007bff;
+            background-color: #006400; /* Couleur de la banderole */
             color: white;
             border: none;
             border-radius: 5px;
             margin-left: 10px;
             cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .search-bar button:hover {
-            background-color: #0056b3;
+            background-color: #004d00; /* Vert plus foncé au survol */
+            transform: scale(1.05); /* Effet de zoom */
         }
+
     </style>
 
     <div class="dashboard-container">
