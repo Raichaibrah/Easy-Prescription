@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
@@ -54,18 +53,15 @@
         }
     </style>
 
-    <div class="pharmacy-detail-container">
-        <h2>{{ pharmacie.name }}</h2>
-
-        <h3>Email: {{ pharmacie.email }}</h3>
-        <h3>Téléphone: {{ pharmacie.telephone }}</h3>
-        <h4>Adresse: {{ pharmacie.adresse }}</h4>
-
-        <img src="{{ pharmacie.thumbnail.url }}" alt="{{ pharmacie.name }}">
-
-        <p>{{ pharmacie.description }}</p>
-
-        <!-- Lien pour revenir à la liste des pharmacies -->
-        <a href="{% url 'dashboard:dashboard' %}" class="back-link">Retour à la liste des pharmacies</a>
-    </div>
+    <h1>{{ title }}</h1>
+    <p>{{ message }}</p>
+    <p>Devenir partenaire : quel intérêt ? <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Faciliter la vie de vos clients en leur faisant gagner du temps <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Fidéliser votre clientèle <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Profiter des moments de creux pour préparer des commandes <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Eviter les longues files d'attente <br>
+    <br> 
+        Déja plus de cent pharmacies partenaires ! <br>
+        Pour devenir partenaire, rendez-vous sur la page contact
+    </p>
 {% endblock %}

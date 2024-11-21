@@ -24,7 +24,7 @@ def signup(request):
 
         utilisateur = Utilisateur.objects.create_user(username=username, password=password)
         login(request, utilisateur)
-        return redirect('index')
+        return redirect('home')
 
     return render(request, 'users/signup.html')
 
@@ -38,7 +38,7 @@ def login_user(request):
         utilisateur = authenticate(username=username, password=password)
         if utilisateur:
             login(request, utilisateur)
-            return redirect('index')
+            return redirect('home')
 
     return render(request, 'users/login.html')
 
@@ -46,7 +46,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('index')
+    return redirect('home')
 
 @login_required
 def profil(request):
