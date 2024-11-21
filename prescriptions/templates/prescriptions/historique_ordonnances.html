@@ -31,7 +31,6 @@
         <!-- En-tête du tableau avec les titres des colonnes -->
         <thead>
           <tr>
-            <th>ID</th>
             <th>Nom du fichier</th>
             <th>Pharmacie</th>
             <th>Date de création</th>
@@ -46,7 +45,6 @@
           {% for ordonnance in ordonnances %}
             <tr>
               <!-- Affichage des données de l'ordonnance -->
-              <td>{{ ordonnance.id }}</td>
               <td>{{ ordonnance.nom_fichier }}</td>
               <td>{{ ordonnance.pharmacie.name }}</td>
               <td>{{ ordonnance.date_creation }}</td>

@@ -10,6 +10,6 @@ class OrdonnanceForm(forms.Form):
         label="Commentaires (optionnel)", widget=forms.Textarea, required=False
     )
     pharmacie = forms.ModelChoiceField(
-        queryset=Pharmacie.objects.all(),
+        queryset=Pharmacie.objects.all(), 
         label="Choisissez une pharmacie"
     )
