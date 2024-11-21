@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from fichiers.forms import OrdonnanceForm
 from fichiers.models import Ordonnance
-from fichiers.storage import GoogleDriveStorage  # Assurez-vous que cette classe fonctionne correctement
+from fichiers.storage import GoogleDriveStorage  
 import os
 
 @login_required

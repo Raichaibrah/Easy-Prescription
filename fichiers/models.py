@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from pharmacies.models import Pharmacie  # Importez correctement le modèle Pharmacie
+from pharmacies.models import Pharmacie  
 
 class Ordonnance(models.Model):
     STATUT_CHOICES = [
