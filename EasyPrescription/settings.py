@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "prescriptions",
     "users",
     "fichiers",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
