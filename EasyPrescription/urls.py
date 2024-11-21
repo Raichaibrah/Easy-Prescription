@@ -24,7 +24,6 @@ from users.views import signup, logout_user, login_user
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.home, name='home'),
-    path("pharmacie/<str:slug>/",views.pharmacie_detail, name="pharmacie"),
     path("signup/", signup, name="signup"),
     path("login/", login_user, name="login"),
     path("logout/", logout_user, name="logout"),
@@ -32,6 +31,7 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('prescriptions/', include('prescriptions.urls')), 
+    path("pharmacie/<str:slug>/",views.pharmacie_detail, name="pharmacie"),
 ]  + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 
