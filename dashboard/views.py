@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 # Create your views here.
 
 def index(request):
-    pharmacie = Pharmacie.objects.all()
+    pharmacie = Pharmacie.objects.all() #pylint: disable=no-member
     return render(request, 'dashboard/index.html', context = {"pharmacies" : pharmacie})
 
 def pharmacie_detail(request, slug):
@@ -28,10 +28,10 @@ def dashboard(request):
     # Si une ville est saisie, on filtre les pharmacies par ville
     if search_city:
         # Vérification du filtrage
-        pharmacies = Pharmacie.objects.filter(ville__icontains=search_city)
+        pharmacies = Pharmacie.objects.filter(ville__icontains=search_city) #pylint: disable=no-member
         print(f"Pharmacies trouvées pour la ville '{search_city}': {pharmacies}")
     else:
-        pharmacies = Pharmacie.objects.all()  # Si pas de ville, on récupère toutes les pharmacies
+        pharmacies = Pharmacie.objects.all()  # Si pas de ville, on récupère toutes les pharmacies #pylint: disable=no-member
 
     # Passer les pharmacies filtrées et la ville recherchée dans le template
     return render(request, 'dashboard/index.html', {'pharmacies': pharmacies, 'search_city': search_city})
