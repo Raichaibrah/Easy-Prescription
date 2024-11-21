@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="form-container">
+    <h1 class="page-title">Soumettre une ordonnance</h1>
+
+    <form method="post" enctype="multipart/form-data" class="ordonnance-form">
+      {% csrf_token %}
+      <div class="form-group">
+        {{ form.as_p }}
+      </div>
+
+      <button type="submit" class="btn-submit">Téléverser</button>
+    </form>
+
+    <!-- Bouton Voir l'historique -->
+    <div class="btn-container">
+      <a href="{% url 'historique_ordonnances' %}" class="btn-history">Retour à l'historique</a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_css %}
+  <style>
+    /* Conteneur principal */
+    .form-container {
+      width: 90%;
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 50px;
+      background-color: #ffffff;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      transform: translateY(10px);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .form-container:hover {
+      transform: translateY(0);
+    }
+
+    /* Titre de la page */
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 40px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    /* Formulaire */
+    .ordonnance-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+    }
+
+    /* Style des groupes de formulaire */
+    .form-group {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    /* Champs du formulaire */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      background-color: #fafafa;
+      font-size: 1rem;
+      transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .form-group input[type="file"] {
+      border: none;
+      background-color: #f1f1f1;
+    }
+
+    /* Animation pour les champs de formulaire au focus */
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #4CAF50;
+      box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+    }
+
+    /* Style pour les boutons */
+    .btn-submit {
+      padding: 16px 30px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 50%;
+      max-width: 250px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-submit:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-submit:focus {
+      outline: none;
+    }
+
+    /* Bouton Voir l'historique */
+    .btn-container {
+      width: 100%;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .btn-history {
+      padding: 14px 30px;
+      font-size: 1.2rem;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-history:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-history:focus {
+      outline: none;
+    }
+
+    /* Mobile friendly */
+    @media (max-width: 768px) {
+      .form-container {
+        width: 95%;
+        padding: 30px;
+      }
+
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .btn-submit {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .btn-history {
+        width: 100%;
+        max-width: 100%;
+        padding: 14px;
+      }
+    }
+
+    /* Animation du formulaire */
+    @keyframes slideIn {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .form-container {
+      animation: slideIn 0.6s ease-out;
+    }
+
+    /* Ajouter un fond léger à la page */
+    body {
+      background-color: #f7f7f7;
+      font-family: 'Arial', sans-serif;
+    }
+
+  </style>
+{% endblock %}

@@ -20,7 +20,7 @@ class Pharmacie(models.Model):
     telephone = models.CharField(max_length=15, blank=True, null=True)
     latitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, blank=True, null=True)
-    thumbnail = models.ImageField(upload_to= "p_pharmacies", blank= True, null= True)
+    thumbnail = models.ImageField(upload_to="p_pharmacies", blank=True, null=True, default="users/logo_pharma.png")
     description = models.CharField(max_length=3000)
 
     def __str__(self):

@@ -1,107 +1,225 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Historique des ordonnances</h1>
-  
-  {% if user.is_authenticated %}
-    <div class="buttons-container">
-      <form action="{% url 'profil' %}" method="get">
-        <button type="submit" class="btn">Mon Profil</button>
-      </form>
+  <!-- Conteneur principal qui englobe tout le contenu -->
+  <div class="content-wrapper">
+    <!-- Titre principal de la page -->
+    <h1>Historique des ordonnances</h1>
 
-      <form action="{% url 'soumettre_ordonnance' %}" method="get">
-        <button type="submit" class="btn">Soumettre une ordonnance</button>
-      </form>
+    {% if user.is_authenticated %}
+      <!-- Conteneur pour les boutons de navigation (Profil, Téléversement de fichiers, Retour à la liste de pharmacies) -->
+      <div class="buttons-container">
+        <!-- Bouton pour aller à la page du profil de l'utilisateur -->
+        <form action="{% url 'profil' %}" method="get">
+          <button type="submit" class="btn primary-btn">Mon Profil</button>
+        </form>
+        <!-- Bouton pour téléverser une nouvelle ordonnance -->
+        <form action="{% url 'fichiers:televerser_ordonnance' %}" method="get">
+          <button type="submit" class="btn secondary-btn">Téléverser un fichier</button>
+        </form>
+        <!-- Bouton pour revenir à la liste des pharmacies -->
+        <form action="{% url 'index' %}" method="get">
+          <button type="submit" class="btn tertiary-btn">Retour à la liste de pharmacies</button>
+        </form>
+      </div>
+    {% endif %}
 
-      <form action="{% url 'index' %}" method="get">
-        <button type="submit" class="btn">Retour à la liste de pharmacies</button>
-      </form>
+    <!-- Conteneur pour le tableau des ordonnances -->
+    <div class="table-container">
+      <!-- Tableau des ordonnances de l'utilisateur -->
+      <table class="history-table">
+        <!-- En-tête du tableau avec les titres des colonnes -->
+        <thead>
+          <tr>
+            <th>Nom du fichier</th>
+            <th>Pharmacie</th>
+            <th>Date de création</th>
+            <th>Statut</th>
+            <th>Lien vers votre ordonnance</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <!-- Corps du tableau où chaque ligne représente une ordonnance -->
+        <tbody>
+          {% for ordonnance in ordonnances %}
+            <tr>
+              <!-- Affichage des données de l'ordonnance -->
+              <td>{{ ordonnance.nom_fichier }}</td>
+              <td>{{ ordonnance.pharmacie.name }}</td>
+              <td>{{ ordonnance.date_creation }}</td>
+              <td>{{ ordonnance.get_statut_display }}</td>
+              <td>
+                <!-- Lien vers le fichier de l'ordonnance, ouverture dans un nouvel onglet -->
+                <a href="{{ ordonnance.drive_file_url }}" target="_blank" class="file-link">Voir l'ordonnance</a>
+              </td>
+              <td>
+                <!-- Formulaire pour supprimer l'ordonnance -->
+                <form action="{% url 'supprimer_ordonnance' ordonnance.id %}" method="post">
+                  {% csrf_token %}
+                  <!-- Bouton pour supprimer l'ordonnance, stylisé avec une classe spéciale pour les boutons d'alerte -->
+                  <button type="submit" class="btn danger-btn">
+                    <i class="fas fa-trash-alt"></i> Supprimer
+                  </button>
+                </form>
+              </td>
+            </tr>
+          {% empty %}
+            <!-- Message affiché lorsqu'il n'y a aucune ordonnance dans l'historique -->
+            <tr>
+              <td colspan="7" class="no-data">Aucune ordonnance soumise.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-  {% endif %}
-
-  <table class="history-table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Pharmacie</th>
-        <th>Date de création</th>
-        <th>Statut</th>
-        <th>Image de l'ordonnance</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for ordonnance in ordonnances %}
-        <tr>
-          <td>{{ ordonnance.id }}</td>
-          <td>{{ ordonnance.pharmacie.name }}</td>
-          <td>{{ ordonnance.date_creation }}</td>
-          <td>{{ ordonnance.get_statut_display }}</td>
-          <td>
-            {% if ordonnance.ordonnance_image %}
-              <img src="{{ ordonnance.ordonnance_image.url }}" alt="Ordonnance Image" class="ordonnance-image"/>
-            {% else %}
-              <span>Aucune image</span>
-            {% endif %}
-          </td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="5">Aucune ordonnance soumise.</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  </div>
 
 {% endblock %}
 
 {% block extra_css %}
   <style>
-    .buttons-container {
-      margin-bottom: 20px;
+    /* Style du conteneur principal, ajout de marges et d'espaces autour du contenu */
+    .content-wrapper {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 30px;
+      background-color: #f9f9f9;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .btn {
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-right: 10px;
+    /* Style du titre principal de la page */
+    h1 {
+      font-size: 2.5rem;
+      color: #2c3e50;
       text-align: center;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
-    .btn:hover {
-      background-color: #45a049;
+    /* Style du conteneur des boutons de navigation */
+    .buttons-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    /* Style des boutons généraux */
+    .btn {
+      padding: 12px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 1.1rem;
+      border: none;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .primary-btn {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .primary-btn:hover {
+      background-color: #2980b9;
+      transform: scale(1.05);
+    }
+
+    .secondary-btn {
+      background-color: #e67e22;
+      color: white;
+    }
+
+    .secondary-btn:hover {
+      background-color: #d35400;
+      transform: scale(1.05);
+    }
+
+    .tertiary-btn {
+      background-color: #16a085;
+      color: white;
+    }
+
+    .tertiary-btn:hover {
+      background-color: #1abc9c;
+      transform: scale(1.05);
+    }
+
+    /* Style du tableau avec des bordures arrondies et des ombres pour plus de modernité */
+    .table-container {
+      overflow-x: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-top: 40px;
     }
 
     .history-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      border-radius: 10px;
     }
 
     .history-table th, .history-table td {
-      padding: 10px;
+      padding: 16px;
       text-align: left;
+      font-size: 1.1rem;
       border-bottom: 1px solid #ddd;
     }
 
     .history-table th {
       background-color: #f2f2f2;
-      color: #333;
+      color: #34495e;
     }
 
+    /* Style des lignes de tableau au survol */
     .history-table tr:hover {
-      background-color: #f5f5f5;
+      background-color: #ecf0f1;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
     }
 
-    .ordonnance-image {
-      max-width: 100px;
-      height: auto;
-      border-radius: 5px;
+    .history-table .no-data {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #bdc3c7;
+      padding: 40px;
+    }
+
+    /* Style des liens vers les fichiers d'ordonnance */
+    .file-link {
+      color: #3498db;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .file-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Style du bouton de suppression avec icône */
+    .danger-btn {
+      background-color: #e74c3c;
+      color: white;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .danger-btn:hover {
+      background-color: #c0392b;
+      transform: scale(1.05);
+    }
+
+    .danger-btn i {
+      margin-right: 8px;
     }
   </style>
 {% endblock %}
