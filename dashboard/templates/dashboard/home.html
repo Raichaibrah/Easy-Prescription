@@ -76,9 +76,9 @@
             <a href="{% url 'dashboard:index' %}">Voir les pharmacies</a>
 
             {% if user.is_authenticated %}
-                <a href="{% url 'fichiers:televerser_ordonnance' %}">Déposer mon ordonnance</a>
+                <a href="{% url 'prescriptions:historique_ordonnances' %}">Mes ordonnances</a>
             {% else %}
-                <a href="{% url 'login' %}">Déposer mon ordonnance</a>
+                <a href="{% url 'login' %}">Mes ordonnances</a>
             {% endif %}
         </div>
     </div>

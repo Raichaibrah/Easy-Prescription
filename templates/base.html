@@ -158,14 +158,14 @@
 
         <!-- Boutons d'authentification -->
         <div class="auth-buttons">
+            <form action="{% url 'home' %}" method="get">
+                <button type="submit">Accueil</button>
+            </form>
             <form action="{% url 'dashboard:page_pharmacie' %}" method="get">
                 <button type="submit">Espace pharmacie</button>
             </form>
             <form action="{% url 'dashboard:contact' %}" method="get">
                 <button type="submit">Contact</button>
-            </form>
-            <form action="{% url 'home' %}" method="get">
-                <button type="submit">Accueil</button>
             </form>
 
             {% if user.is_authenticated %}
