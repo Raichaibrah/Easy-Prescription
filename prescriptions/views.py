@@ -12,10 +12,6 @@ def historique_ordonnances(request):
     return render(request, 'prescriptions/historique_ordonnances.html', {'ordonnances': ordonnances})
 
 @login_required
-def soumettre_ordonnance(request):
-    return render(request, 'fichiers/televerser.html')
-
-@login_required
 def supprimer_ordonnance(request, id):
     # Récupérer l'ordonnance à supprimer
     ordonnance = get_object_or_404(Ordonnance, id=id)
