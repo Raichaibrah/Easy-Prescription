@@ -43,7 +43,7 @@ def televerser_ordonnance(request):
             # Nettoyage du fichier temporaire local
             os.remove(file_path)
 
-            return redirect('historique_ordonnances')  # Redirection après succès
+            return redirect('prescriptions:historique_ordonnances')  # Redirection après succès
     else:
         form = OrdonnanceForm()
 

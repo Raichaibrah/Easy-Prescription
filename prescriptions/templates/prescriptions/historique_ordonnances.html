@@ -64,7 +64,7 @@
               </td>
               <td>
                 <!-- Formulaire pour supprimer l'ordonnance -->
-                <form action="{% url 'supprimer_ordonnance' ordonnance.id %}" method="post">
+                <form action="{% url 'prescriptions:supprimer_ordonnance' ordonnance.id %}" method="post">
                   {% csrf_token %}
                   <button type="submit" class="btn danger-btn">
                       <i class="fas fa-trash-alt"></i> Supprimer
@@ -100,7 +100,7 @@
     /* Style du titre principal de la page */
     h1 {
       font-size: 2.5rem;
-      color: #2c3e50;
+      color: #000 !important;
       text-align: center;
       margin-bottom: 30px;
       font-weight: bold;

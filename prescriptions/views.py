@@ -23,7 +23,7 @@ def supprimer_ordonnance(request, id):
     # Vérifier si l'utilisateur authentifié est bien celui qui a soumis l'ordonnance
     if ordonnance.user != request.user:
         messages.error(request, "Vous ne pouvez pas supprimer cette ordonnance.")
-        return redirect('historique_ordonnances')
+        return redirect('prescriptions:historique_ordonnances')
 
     # Supprime l'ordonnance dans le google drive 
     storage = GoogleDriveStorage.get_instance()
@@ -35,4 +35,4 @@ def supprimer_ordonnance(request, id):
     
     # Ajouter un message de succès et rediriger vers l'historique des ordonnances
     messages.success(request, "L'ordonnance a été supprimée avec succès.")
-    return redirect('historique_ordonnances')
+    return redirect('prescriptions:historique_ordonnances')

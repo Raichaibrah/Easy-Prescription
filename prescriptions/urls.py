@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+app_name = 'prescriptions'
 
 urlpatterns = [
     path('historique/', views.historique_ordonnances, name='historique_ordonnances'),
