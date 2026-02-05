@@ -5,9 +5,8 @@ The project simulates a prescription submission workflow and does **not** handle
 
 Developed as a team project during the **Coding Weeks Hackathon**.
 
----
 
-## ✨ Features
+## Features
 
 ### User authentication
 - User account creation (patients only)
@@ -21,24 +20,21 @@ Developed as a team project during the **Coding Weeks Hackathon**.
 - Display of submitted prescriptions with their status (e.g. *Pending*)
 - Ability to delete a submitted prescription
 
----
 
-## 🚧 Not implemented (current version)
+## Not implemented (current version)
 
 - Pharmacy interface: pharmacies are pre-registered in the database but cannot actively manage prescriptions (e.g. mark them as *prepared* or *completed*)
 
----
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Backend**: Python, Django  
 - **Database**: SQL  
 - **Frontend**: HTML, CSS  
 - **Authentication**: Django built-in authentication system
 
----
 
-## 👥 Team
+## Team
 
 - Pantano Araujo Felipe  
 - Guivarc'H Malo  
@@ -47,10 +43,9 @@ Developed as a team project during the **Coding Weeks Hackathon**.
 - Rossi Ludovico  
 - **Raïcha Ibrah Sanoussi**
 
----
-
 ## ⚠️ Disclaimer
 
 This project is a prototype developed for educational purposes only.  
 No real medical data is processed or stored.
+
 
