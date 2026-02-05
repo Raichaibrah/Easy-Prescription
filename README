@@ -1,40 +1,55 @@
-EasyPrescription is a web application that allows users (patients) to submit their medical prescriptions and associate them with a pre-selected pharmacy. The project simulates the prescription submission workflow and does not handle real or sensitive medical data.
+# EasyPrescription
 
-This application was developed during the Coding Weeks Hackathon as a team project.
+EasyPrescription is a web application that allows patients to submit medical prescriptions and associate them with a pre-selected pharmacy.  
+The project simulates a prescription submission workflow and does **not** handle real or sensitive medical data.
 
-Features:
+Developed as a team project during the **Coding Weeks Hackathon**.
 
-I. User authentication
+---
+
+## ✨ Features
+
+### User authentication
 - User account creation (patients only)
 - Login and logout
 
-II. Prescription submission
+### Prescription submission
 - Upload of a prescription image (no image processing applied)
 - Selection of a pharmacy from a pre-defined list stored in the database
 
-III. User dashboard
-- Display of submitted prescriptions with their status (e.g. 'Pending')
+### User dashboard
+- Display of submitted prescriptions with their status (e.g. *Pending*)
 - Ability to delete a submitted prescription
 
-Not implemented in the current version : 
+---
 
-- Pharmacy interface: pharmacies are pre-registered in the database, but they cannot actively manage prescriptions (e.g. mark them as "prepared" or "completed").
+## 🚧 Not implemented (current version)
 
-Tech Stack : 
+- Pharmacy interface: pharmacies are pre-registered in the database but cannot actively manage prescriptions (e.g. mark them as *prepared* or *completed*)
 
-- Backend: Python, Django
-- Database: SQL
-- Frontend: HTML, CSS
-- Authentication: Django built-in authentication system
+---
 
-Team : 
+## 🛠 Tech Stack
+
+- **Backend**: Python, Django  
+- **Database**: SQL  
+- **Frontend**: HTML, CSS  
+- **Authentication**: Django built-in authentication system
+
+---
+
+## 👥 Team
 
 - Pantano Araujo Felipe  
 - Guivarc'H Malo  
 - Jourdier Thomas  
 - Labroye Come  
 - Rossi Ludovico  
-- Ibrah R Sanoussi Raïcha
+- **Raïcha Ibrah Sanoussi**
 
-Disclaimer : This project is a prototype developed for educational purposes only. No real medical data is processed or stored.
+---
 
+## ⚠️ Disclaimer
+
+This project is a prototype developed for educational purposes only.  
+No real medical data is processed or stored.
