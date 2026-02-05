@@ -1,29 +1,49 @@
+# EasyPrescription
 
-EasyPrescription
-Description
-EasyPrescription est une application permettant aux utilisateurs (patients) de soumettre leurs ordonnances et de les associer à une pharmacie pré-sélectionnée. L'application permet également aux patients de visualiser et de supprimer leurs ordonnances soumises. Ce projet ne traite pas de données sensibles réelles et simule le processus de soumission d'ordonnances à une pharmacie.
+EasyPrescription is a web application that allows users (patients) to submit their medical prescriptions and associate them with a pre-selected pharmacy. The project simulates the prescription submission workflow and does not handle real or sensitive medical data.
 
-Fonctionnalités principales du livrable actuel :
+This application was developed during the Coding Weeks Hackathon as a team project.
 
-Authentification et gestion des utilisateurs :
-Création d'un compte utilisateur (patients uniquement).
-Connexion et déconnexion.
+---
 
-Soumission d'ordonnances :
-Formulaire permettant aux utilisateurs de télécharger une image de leur ordonnance (aucun traitement spécifique de l'image).
-Choix d'une pharmacie pré-sélectionnée dans la base de données.
+## Features
 
-Tableau de bord utilisateur :
-Vue listant les ordonnances soumises par l'utilisateur avec leur statut (par exemple, "En attente").
-Option pour supprimer une ordonnance soumise.
+### User authentication
+- User account creation (patients only)
+- Login and logout
 
-Fonctionnalité non développée pour ce livrable :
-Interface pour les pharmacies : Actuellement, les pharmacies sont pré-sélectionnées dans la base de données et aucune gestion active des ordonnances par les pharmacies (comme marquer une ordonnance comme "préparée") n'est implémentée dans cette version.
+### Prescription submission
+- Upload of a prescription image (no image processing applied)
+- Selection of a pharmacy from a pre-defined list stored in the database
 
-Liste des Étudiants :
-Pantano Araujo Felipe
-Guivarc'H Malo
-Jourdier Thomas
-Labroye Come
-Rossi Ludovico
-Ibrah R Sanoussi Raïcha
+### User dashboard
+- Display of submitted prescriptions with their status (e.g. *Pending*)
+- Ability to delete a submitted prescription
+
+---
+
+## Not implemented in the current version
+
+- **Pharmacy interface**: pharmacies are pre-registered in the database, but they cannot actively manage prescriptions (e.g. mark them as *prepared* or *completed*).
+
+---
+
+## Tech Stack
+
+- **Backend**: Python, Django
+- **Database**: SQL
+- **Frontend**: HTML, CSS
+- **Authentication**: Django built-in authentication system
+
+---
+
+## Team
+
+- Pantano Araujo Felipe  
+- Guivarc'H Malo  
+- Jourdier Thomas  
+- Labroye Come  
+- Rossi Ludovico  
+- **Ibrah R Sanoussi Raïcha**
+
+Disclaimer : This project is a prototype developed for educational purposes only. No real medical data is processed or stored.
